@@ -1,19 +1,11 @@
-/*
-  Running process using Process class.
-
- This sketch demonstrate how to run linux processes
- using an Arduino Yún.
-
- created 5 Jun 2013
- by Cristian Maglie
-
- This example code is in the public domain.
-
- http://www.arduino.cc/en/Tutorial/Process
-
- */
-
 #include <Process.h>
+#include <YunClient.h>
+#include <YunServer.h>
+
+#define PORT 3479
+
+YunClient client;
+YunServer server;
 
 void setup() {
   // Initialize Bridge
@@ -26,30 +18,115 @@ void setup() {
   while (!Serial);
 
   // run various example processes
-  runCurl();
+  runUdp();
   runCpuInfo();
 }
 
 void loop() {
-  // Do nothing here.
+  //tcpConnect();
+  // Make the client connect to the desired server and port
+  //  IPAddress addr(192, 168, 1, 59);
+
+  // Or define it using a single unsigned 32 bit value
+  // IPAddress addr(0xc0a8sab9); // same as 192.168.42.185
+
+  // Or define it using a byte array
+  // const uint8 addrBytes = {192, 168, 42, 185};
+  // IPAddress addr(addrBytes);
+
+  //  client.connect(addr, PORT);
+
+  // Or connect by a server name and port.
+  // Note that the Yun doesn't support mDNS by default, so "Yun.local" won't work
+  // client.connect("ServerName.com", PORT);
+
+  // Give some time before trying again
+  //  delay (10000);
 }
 
-void runCurl() {
+void runUdp() {
   // Launch "curl" command and get Arduino ascii art logo from the network
   // curl is command line program for transferring data using different internet protocols
   Process p;		// Create a process and call it "p"
-  p.begin("curl");	// Process that launch the "curl" command
-  p.addParameter("http://www.arduino.cc/asciilogo.txt"); // Add the URL parameter to "curl"
+  p.begin("python");	// Process that launch the "curl" command
+  p.addParameter("/mnt/sda1/udp.py"); // Add the URL parameter to "curl"
   p.run();		// Run the process and wait for its termination
 
-  // Print arduino logo over the Serial
-  // A process output can be read with the stream methods
-  while (p.available() > 0) {
-    char c = p.read();
-    Serial.print(c);
-  }
-  // Ensure the last bit of data is sent.
+  Serial.println("UDP runing ....");
   Serial.flush();
+}
+
+void tcpConnect() {
+
+  // Make the client connect to the desired server and port
+  IPAddress addr(192, 168, 0, 62);
+
+  // Or define it using a single unsigned 32 bit value
+  // IPAddress addr(0xc0a8sab9); // same as 192.168.42.185
+
+  // Or define it using a byte array
+  // const uint8 addrBytes = {192, 168, 42, 185};
+  // IPAddress addr(addrBytes);
+
+  client.connect(addr, PORT);
+
+  if (client.connected())
+  {
+    Serial.println("Connected to the server.");
+
+    // Send something to the client
+    client.println("Something...");
+
+    // Cheap way to give the server time to respond.
+    // A real application (as opposed to this simple example) will want to be more intelligent about this.
+    delay (250);
+
+    // Read all incoming bytes available from the server and print them
+    while (client.available())
+    {
+      char c = client.read();
+      Serial.print(c);
+    }
+    Serial.flush();
+
+    // Close the connection
+    client.stop();
+  }
+  else
+    Serial.println("Could not connect to the server.");
+  // Or connect by a server name and port.
+  // Note that the Yun doesn't support mDNS by default, so "Yun.local" won't work
+  // client.connect("ServerName.com", PORT);
+
+  // Give some time before trying again
+  delay (1000);
+}
+
+void runTcp() {
+  if (client.connected())
+  {
+    Serial.println("Connected to the server.");
+
+    // Send something to the client
+    client.println("Something...");
+
+    // Cheap way to give the server time to respond.
+    // A real application (as opposed to this simple example) will want to be more intelligent about this.
+    delay (250);
+
+    // Read all incoming bytes available from the server and print them
+    while (client.available())
+    {
+      char c = client.read();
+      Serial.print(c);
+    }
+    Serial.flush();
+
+    // Close the connection
+    client.stop();
+  }
+  else
+    Serial.println("Could not connect to the server.");
 }
 
 void runCpuInfo() {
