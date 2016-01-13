@@ -103,7 +103,7 @@
       <AdditionalLibraryDirectories>$(QTDIR)\lib;..\3rdparty\openssl\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>qtmaind.lib;Qt5Cored.lib;Qt5Networkd.lib;libeay32.lib;ssleay32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ImportLibrary>$(OutDir)$(TargetName)d.lib</ImportLibrary>
+      <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
       <Command>mkdir $(SolutionDir)build\inc\$(ProjectName)
