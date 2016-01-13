@@ -1,0 +1,68 @@
+﻿Build started 2016/1/13 下午 02:36:33.
+     1>Project "E:\IOT\IOT\ServerCore\ServerCore.vcxproj" on node 2 (Build target(s)).
+     1>CustomBuild:
+         Moc'ing servercore.h...
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_DeviceManager.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_DeviceManager.cpp, GeneratedFiles\Release\moc_DeviceManager.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_ServerBroadCast.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_ServerBroadCast.cpp, GeneratedFiles\Release\moc_ServerBroadCast.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_servercore.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_servercore.cpp, GeneratedFiles\Release\moc_servercore.cpp.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_ServerTCPCommand.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_ServerTCPCommand.cpp, GeneratedFiles\Release\moc_ServerTCPCommand.cpp.
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /I.\GeneratedFiles /I. /IC:\Qt\5.5\msvc2013_64\include /I.\GeneratedFiles\Debug /IC:\Qt\5.5\msvc2013_64\include\QtCore /IC:\Qt\5.5\msvc2013_64\include\QtNetwork /I..\3rdparty\openssl\include /Zi /nologo /W1 /WX- /Od /D UNICODE /D WIN32 /D WIN64 /D QT_DLL /D QT_CORE_LIB /D QT_NETWORK_LIB /D SERVERCORE_LIB /D _WINDLL /Gm- /EHsc /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Debug\\" /Fd"x64\Debug\vc120.pdb" /Gd /TP /errorReport:prompt DeviceInfo.cpp DeviceManager.cpp GeneratedFiles\Debug\moc_DeviceManager.cpp GeneratedFiles\Debug\moc_servercore.cpp servercore.cpp
+         DeviceInfo.cpp
+         DeviceManager.cpp
+         moc_DeviceManager.cpp
+         moc_servercore.cpp
+         servercore.cpp
+         Generating Code...
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"E:\IOT\IOT\x64\Debug\\ServerCored.dll" /NOLOGO /LIBPATH:C:\Qt\5.5\msvc2013_64\lib /LIBPATH:..\3rdparty\openssl\lib qtmaind.lib Qt5Cored.lib Qt5Networkd.lib libeay32.lib ssleay32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"E:\IOT\IOT\x64\Debug\ServerCored.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\IOT\IOT\x64\Debug\ServerCoredd.lib" /MACHINE:X64 /DLL x64\Debug\DeviceCommand.obj
+         x64\Debug\DeviceInfo.obj
+         x64\Debug\moc_DeviceManager.obj
+         x64\Debug\moc_ServerBroadCast.obj
+         x64\Debug\moc_servercore.obj
+         x64\Debug\moc_ServerTCPCommand.obj
+         x64\Debug\JsonGenerator.obj
+         x64\Debug\ServerBroadCast.obj
+         x64\Debug\servercore.obj
+         x64\Debug\ServerTCPCommand.obj
+         x64\Debug\DeviceManager.obj
+            Creating library E:\IOT\IOT\x64\Debug\ServerCoredd.lib and object E:\IOT\IOT\x64\Debug\ServerCoredd.exp
+         ServerCore.vcxproj -> E:\IOT\IOT\x64\Debug\ServerCored.dll
+       PostBuildEvent:
+         mkdir E:\IOT\IOT\build\inc\ServerCore
+         mkdir E:\IOT\IOT\build\lib64\
+         mkdir E:\IOT\IOT\build\bin64\
+         xcopy E:\IOT\IOT\ServerCore\*.h E:\IOT\IOT\build\inc\ServerCore /y
+         xcopy E:\IOT\IOT\x64\Debug\*.lib E:\IOT\IOT\build\lib64 /y
+         xcopy E:\IOT\IOT\x64\Debug\*.dll E:\IOT\IOT\build\bin64 /y
+         xcopy E:\IOT\IOT\x64\Debug\*.exe E:\IOT\IOT\build\bin64 /y
+         
+         :VCEnd
+         子目錄或檔案 E:\IOT\IOT\build\inc\ServerCore 已經存在。
+         子目錄或檔案 E:\IOT\IOT\build\lib64\ 已經存在。
+         子目錄或檔案 E:\IOT\IOT\build\bin64\ 已經存在。
+         E:\IOT\IOT\ServerCore\common.h
+         E:\IOT\IOT\ServerCore\Constant.h
+         E:\IOT\IOT\ServerCore\DeviceCommand.h
+         E:\IOT\IOT\ServerCore\DeviceInfo.h
+         E:\IOT\IOT\ServerCore\DeviceManager.h
+         E:\IOT\IOT\ServerCore\JsonGenerator.h
+         E:\IOT\IOT\ServerCore\ServerBroadCast.h
+         E:\IOT\IOT\ServerCore\servercore.h
+         E:\IOT\IOT\ServerCore\servercore_global.h
+         E:\IOT\IOT\ServerCore\ServerTCPCommand.h
+         E:\IOT\IOT\ServerCore\ServerUtil.h
+         已複製 11 個檔案
+         E:\IOT\IOT\x64\Debug\ServerCoredd.lib
+         已複製 1 個檔案
+         E:\IOT\IOT\x64\Debug\ServerCored.dll
+         已複製 1 個檔案
+         E:\IOT\IOT\x64\Debug\FakeDevice.exe
+         E:\IOT\IOT\x64\Debug\FakeDeviced.exe
+         E:\IOT\IOT\x64\Debug\ServerAppd.exe
+         已複製 3 個檔案
+     1>Done Building Project "E:\IOT\IOT\ServerCore\ServerCore.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:03.11

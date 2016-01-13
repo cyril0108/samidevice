@@ -1,0 +1,38 @@
+﻿Build started 2016/1/12 下午 04:06:10.
+     1>Project "E:\IOT\IOT\ServerApp\ServerApp.vcxproj" on node 2 (Rebuild target(s)).
+     1>CustomBuild:
+         Moc'ing serverapp.h...
+         Uic'ing serverapp.ui...
+         Rcc'ing serverapp.qrc...
+     1>RCC : warning : No resources in 'E:\IOT\IOT\ServerApp\serverapp.qrc'.
+         
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_serverapp.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_serverapp.cpp, GeneratedFiles\Release\moc_serverapp.cpp.
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /I.\GeneratedFiles /IE:\IOT\IOT\build\inc\ /I. /IC:\Qt\5.5\msvc2013_64\include /I.\GeneratedFiles\Release /IC:\Qt\5.5\msvc2013_64\include\QtCore /IC:\Qt\5.5\msvc2013_64\include\QtGui /IC:\Qt\5.5\msvc2013_64\include\QtWidgets /IC:\Qt\5.5\msvc2013_64\include\QtNetwork /nologo /W1 /WX- /O2 /D UNICODE /D WIN32 /D WIN64 /D QT_DLL /D QT_NO_DEBUG /D NDEBUG /D QT_CORE_LIB /D QT_GUI_LIB /D QT_WIDGETS_LIB /D QT_NETWORK_LIB /Gm- /EHsc /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Release\\" /Fd"x64\Release\vc120.pdb" /Gd /TP /errorReport:prompt GeneratedFiles\qrc_serverapp.cpp
+         qrc_serverapp.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /I.\GeneratedFiles /IE:\IOT\IOT\build\inc\ /I. /IC:\Qt\5.5\msvc2013_64\include /I.\GeneratedFiles\Release /IC:\Qt\5.5\msvc2013_64\include\QtCore /IC:\Qt\5.5\msvc2013_64\include\QtGui /IC:\Qt\5.5\msvc2013_64\include\QtWidgets /IC:\Qt\5.5\msvc2013_64\include\QtNetwork /nologo /W1 /WX- /O2 /D UNICODE /D WIN32 /D WIN64 /D QT_DLL /D QT_NO_DEBUG /D NDEBUG /D QT_CORE_LIB /D QT_GUI_LIB /D QT_WIDGETS_LIB /D QT_NETWORK_LIB /Gm- /EHsc /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Release\\" /Fd"x64\Release\vc120.pdb" /Gd /TP /errorReport:prompt GeneratedFiles\Release\moc_serverapp.cpp main.cpp serverapp.cpp
+         moc_serverapp.cpp
+         main.cpp
+         serverapp.cpp
+         Generating Code...
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"E:\IOT\IOT\x64\Release\\ServerApp.exe" /NOLOGO /LIBPATH:C:\Qt\5.5\msvc2013_64\lib /LIBPATH:E:\IOT\IOT\build\lib64\ qtmain.lib Qt5Core.lib Qt5Gui.lib Qt5Widgets.lib ServerCore.lib Qt5Network.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:"E:\IOT\IOT\x64\Release\ServerApp.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\IOT\IOT\x64\Release\ServerApp.lib" /MACHINE:X64 x64\Release\qrc_serverapp.obj
+         x64\Release\moc_serverapp.obj
+         x64\Release\main.obj
+         x64\Release\serverapp.obj
+         E:\IOT\IOT\x64\Release\ServerCore.lib
+         ServerApp.vcxproj -> E:\IOT\IOT\x64\Release\ServerApp.exe
+       PostBuildEvent:
+         mkdir E:\IOT\IOT\build\bin64\ServerApp
+         xcopy E:\IOT\IOT\x64\Release\*.exe E:\IOT\IOT\build\bin64 /y
+         
+         :VCEnd
+         子目錄或檔案 E:\IOT\IOT\build\bin64\ServerApp 已經存在。
+         E:\IOT\IOT\x64\Release\FakeDevice.exe
+         E:\IOT\IOT\x64\Release\ServerApp.exe
+         已複製 2 個檔案
+     1>Done Building Project "E:\IOT\IOT\ServerApp\ServerApp.vcxproj" (Rebuild target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:02.52
