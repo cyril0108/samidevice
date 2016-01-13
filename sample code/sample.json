@@ -1,0 +1,124 @@
+// Server UDP broadcast
+
+{
+	"command" : "query",
+	"seq" : 1234 // random number, security !?
+}
+
+// device reply UDP broadcast
+
+{
+	"uid": "test1234567890",
+	"DisplayName": "IM Device",
+	"ip": "192.168.55.66",
+	"type" : "????"
+}
+
+
+// TCP Server query device support commands
+
+{
+	"command" : "supportCmds",
+	"seq" : 1234 // ?
+}
+
+
+// device reply server query commands
+
+{
+	"status" : 200,  // http command
+
+	"SupportCmds": 
+	[
+		{
+			"command" : "adjustTemperature",
+			"command_displayName": "Set Temperature",
+			"param_type" : "integer",    // integer, text, none  float ?
+			
+			// if integer
+			"param_max" : 100,
+			"param_min" : 20
+		},
+		{
+			"command" : "query",
+			"command_displayName": "Query Status",
+			"param_type" : "none"    // integer, text, none
+		}
+	
+	]
+
+}
+
+
+////////////////////////////////////////////////////////////////////////////
+
+// Server query display info
+
+{
+	"command" : "queryDisplayInfo",
+	"seq" : 1234 // ?
+}
+
+
+// Device reply query display info
+
+{
+	"status" : 200, 
+	"DisplayInfo" : ["Temperature", "WindStrength", "Humidity"],
+	"Temperature": "30", 
+	"WindStrength": "Medium",
+	"Humidity" : "60"
+}
+
+// send command to device
+
+{
+	"command": "xxxxx",
+	"param" : "xxxxx" or 1111111,
+	"seq" : 1234 //?
+}
+
+// device return
+
+{
+	"status" : 200
+	// specific key ?!
+}
+
+
+//////////////////////////////////////////////////////////////////////////
+
+// Device send to server 
+
+{
+	"command" : "listDevices" 
+}
+
+// Server Returns:
+
+{
+	"status": 200,
+	"devices":
+	[
+		{
+			"uid" : "uid",
+			"DisplayName": "Name",
+			"ip": "ip"
+		}
+	]
+}
+
+// Device send to server 
+
+{
+	"command" : "sendCommandToDevice",
+	"uid": "uid",
+	"deviceCmd": "Device support command",
+	"param", "xxxxx"
+}
+
+// Server return
+
+{
+	"status": 200
+}
