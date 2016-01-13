@@ -28,7 +28,7 @@ void loop() {
 }
 
 void process(YunClient bridgeClient) {
-  StaticJsonBuffer<1024> jsonBuffer;
+  StaticJsonBuffer<200> jsonBuffer;
   // read the command
   String command = bridgeClient.readString();
   Serial.println(command);
@@ -67,7 +67,7 @@ void runUdp() {
 
 void tcpSendCommand(String sendCmd) {
   // Make the client connect to the desired server and port
-  IPAddress addr(192, 168, 1, 59);
+  IPAddress addr(192, 168, 0, 62);
   client.connect(addr, PORT);
   //delay (250);
   if (client.connected())
