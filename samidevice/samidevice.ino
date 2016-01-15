@@ -7,6 +7,7 @@
 #define PORT 3479
 YunClient client;
 YunServer server(PORT);
+int sysTemperature = 20;
 
 void setup() {
   // Initialize Bridge
@@ -16,6 +17,7 @@ void setup() {
   while (!Serial);
   server.begin();
   runCpuInfo();
+  //runUdp();
 }
 
 void loop() {
@@ -42,16 +44,24 @@ void process(YunClient bridgeClient) {
   String rcvCmd = root["command"];
   Serial.println("received command : " + rcvCmd);
 
-  if (rcvCmd == "queryDisplayInfo") {
-    char *res = "{\"status\" : 200,\"DisplayInfo\" : [\"Temperature\", \"WindStrength\", \"Humidity\"],\"Temperature\": \"30\",\"WindStrength\": \"Medium\",\"Humidity\" : \"60\"}";
+  if (rcvCmd == "supportCmds") {
+    char *res = "{\"status\":200,\"SupportCmds\":[{\"command\":\"adjustTemperature\",\"command_displayName\":\"Set Temperature\",\"param_type\":\"integer\",\"param_max\":100,\"param_min\":20},{\"command\":\"queryDisplayInfo\",\"command_displayName\":\"Query Status\",\"param_type\":\"none\"}]}";
     Serial.println(res);
     Serial.flush();
-    tcpSendCommand(res);
-  } else if (rcvCmd == "supportCmds") {
-    char *res = "{\"status\":200,\"SupportCmds\":[{\"command\":\"adjustTemperature\",\"command_displayName\":\"Set Temperature\",\"param_type\":\"integer\",\"param_max\":100,\"param_min\":20},{\"command\":\"query\",\"command_displayName\":\"Query Status\",\"param_type\":\"none\"}]";
+    tcpSendCommand(bridgeClient, res);
+  } else if (rcvCmd == "queryDisplayInfo") {
+    String temperature = String(sysTemperature);
+    String res = "{\"status\" : 200,\"DisplayInfo\" : [\"Temperature\", \"WindStrength\", \"Humidity\"],\"Temperature\": \""+ temperature +"\",\"WindStrength\": \"Medium\",\"Humidity\" : \"60\"}";
     Serial.println(res);
     Serial.flush();
-    tcpSendCommand(res);
+    tcpSendCommand(bridgeClient, res);
+  } else if (rcvCmd == "adjustTemperature") {
+    char *res = "{\"status\" : 200}";
+    String rcvParam = root["param"];
+    sysTemperature = rcvParam.toInt();
+    Serial.println(res);
+    Serial.flush();
+    tcpSendCommand(bridgeClient, res);
   }
   return;
 }
@@ -65,28 +75,28 @@ void runUdp() {
   Serial.flush();
 }
 
-void tcpSendCommand(String sendCmd) {
+void tcpSendCommand(YunClient bridgeClient, String sendCmd) {
   // Make the client connect to the desired server and port
-  IPAddress addr(192, 168, 0, 62);
-  client.connect(addr, PORT);
+  //  IPAddress addr(192, 168, 1, 59);
+  //  client.connect(addr, PORT);
   //delay (250);
-  if (client.connected())
+  if (bridgeClient.connected())
   {
     Serial.println("Connected to the server.");
     // Send something to the client
-    client.println(sendCmd);
+    bridgeClient.println(sendCmd);
     // Cheap way to give the server time to respond.
     // A real application (as opposed to this simple example) will want to be more intelligent about this.
     delay (250);
     // Read all incoming bytes available from the server and print them
-    while (client.available())
+    while (bridgeClient.available())
     {
       char c = client.read();
       Serial.print(c);
     }
     Serial.flush();
     // Close the connection
-    client.stop();
+    //    client.stop();
   }
   else
     Serial.println("Could not connect to the server.");
