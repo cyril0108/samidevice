@@ -182,13 +182,6 @@ void ServerCore::queryDeviceDisplayInfo(QString deviceUID)
 {
 	QTcpSocket *socket = createSocket(deviceUID);
 
-	QVariantMap paramMap;
-	paramMap.insert(JSON_KEY_SEQ, 1234);
-
-	QString jsonCmd = JsonGenerator::GenerateJsonCommand(TCP_COMMAND_TYPE::QUERY_DEVICE_DISPLAY_INFO, paramMap);
-
-	socket->write(jsonCmd.toLatin1());
-
 	QObject::connect(socket, &QTcpSocket::readyRead, [=]
 	{
 		QByteArray byteArray = socket->readAll();
@@ -208,15 +201,18 @@ void ServerCore::queryDeviceDisplayInfo(QString deviceUID)
 	{
 		socket->deleteLater();
 	});
+
+	QVariantMap paramMap;
+	paramMap.insert(JSON_KEY_SEQ, 1234);
+
+	QString jsonCmd = JsonGenerator::GenerateJsonCommand(TCP_COMMAND_TYPE::QUERY_DEVICE_DISPLAY_INFO, paramMap);
+
+	socket->write(jsonCmd.toLatin1());
 }
 
 void ServerCore::sendCommandToDevice(QString deviceUID, QVariantMap paramMap)
 {
 	QTcpSocket *socket = createSocket(deviceUID);
-
-	QString jsonCmd = JsonGenerator::GenerateJsonCommand(TCP_COMMAND_TYPE::SEND_COMMAND_TO_DEVICE, paramMap);
-
-	socket->write(jsonCmd.toLatin1());
 
 	QObject::connect(socket, &QTcpSocket::readyRead, [=]
 	{
@@ -237,6 +233,13 @@ void ServerCore::sendCommandToDevice(QString deviceUID, QVariantMap paramMap)
 	{
 		socket->deleteLater();
 	});
+
+	QString jsonCmd = JsonGenerator::GenerateJsonCommand(TCP_COMMAND_TYPE::SEND_COMMAND_TO_DEVICE, paramMap);
+
+	socket->write(jsonCmd.toLatin1());
+
+	socket->waitForBytesWritten();
+	socket->waitForReadyRead();
 }
 
 void ServerCore::processDeviceCommandSocket()

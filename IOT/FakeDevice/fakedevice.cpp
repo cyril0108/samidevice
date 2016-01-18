@@ -102,7 +102,7 @@ void FakeDevice::ReplyUDPServerInfo()
 			currentIP = address.toString();
 		}
 	}
-	currentIP = "192.168.1.69";
+	currentIP = "192.168.1.59";
 	ui.plainTextEdit->appendPlainText("CurrentIP: " + currentIP);
 
 	if (currentIP.isEmpty())
@@ -222,6 +222,7 @@ void FakeDevice::processDeviceCommandSocket()
 void FakeDevice::sendCommandToServer(QString command)
 {
 	QTcpSocket *socket = new QTcpSocket(this);
+	serverIP = "192.168.1.7";
 	socket->connectToHost(serverIP, 3479, QIODevice::ReadWrite);
 
 	QJsonObject jsonObj;
@@ -233,7 +234,7 @@ void FakeDevice::sendCommandToServer(QString command)
 	else if (command == "sendCommandToDevice")
 	{
 		jsonObj.insert("command", command);
-		jsonObj.insert("uid", "az0000");
+		jsonObj.insert("uid", "arduinozero");
 		jsonObj.insert("deviceCmd", "adjustTemperature");
 		jsonObj.insert("param", "45");
 

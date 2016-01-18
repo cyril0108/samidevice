@@ -30,14 +30,31 @@
       <x>350</x>
       <y>10</y>
       <width>160</width>
-      <height>331</height>
+      <height>361</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
+      <widget class="QLineEdit" name="uidLineEdit">
+       <property name="placeholderText">
+        <string>uid</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="temperatureLineEdit">
+       <property name="inputMethodHints">
+        <set>Qt::ImhDigitsOnly|Qt::ImhFormattedNumbersOnly</set>
+       </property>
+       <property name="placeholderText">
+        <string>Temperatire</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="LoginButton">
        <property name="text">
-        <string>Login</string>
+        <string>Set Temperature</string>
        </property>
       </widget>
      </item>

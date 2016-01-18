@@ -17,16 +17,17 @@ ServerApp::ServerApp(QWidget *parent)
 	{
 		QVariantMap paramMap;
 		paramMap.insert("command", "adjustTemperature");
-		paramMap.insert("param", "35");
+		QString temperature = ui.temperatureLineEdit->text();
+		paramMap.insert("param", temperature);
 		paramMap.insert("seq", 1234);
-		ServerCore::GetInstance()->sendCommandToDevice("az0000", paramMap);
+		ServerCore::GetInstance()->sendCommandToDevice(ui.uidLineEdit->text(), paramMap);
 	});
 
 	QObject::connect(ui.GetStatusButton, &QPushButton::clicked, [=]
 	{
 		QVariantMap paramMap;
 		paramMap.insert("command", "queryDisplayInfo");
-		ServerCore::GetInstance()->sendCommandToDevice("az0000", paramMap);
+		ServerCore::GetInstance()->sendCommandToDevice(ui.uidLineEdit->text(), paramMap);
 	});
 
 	QObject::connect(ServerCore::GetInstance(), &ServerCore::commandReturned, [=](QString uid, QVariantMap retMap)
@@ -38,6 +39,11 @@ ServerApp::ServerApp(QWidget *parent)
 			ui.plainTextEdit->appendPlainText(key + ": " + retMap[key].toString());
 		}
 		
+	});
+
+	QObject::connect(ServerCore::GetInstance(), &ServerCore::deviceAdded, [=](QString uid)
+	{
+		ui.plainTextEdit->appendPlainText(uid + " added to server.");
 	});
 
 	ServerCore::GetInstance()->startServer();
