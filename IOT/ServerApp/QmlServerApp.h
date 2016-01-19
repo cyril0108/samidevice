@@ -16,5 +16,5 @@ public Q_SLOTS:
     void deviceAdded(QString uid);
     void displayInfoRecieved(QString uid, QVariantMap retMap);
     bool sendCommandToDevice(const QString& deviceUID, const QString& cmdKey, const QString& value);
-    void queryDeviceInfo(QString deviceUID, QString& iP, QString& Name);
+    void queryDeviceInfo(QString deviceUID, QString& ip, QString& name);
 };
