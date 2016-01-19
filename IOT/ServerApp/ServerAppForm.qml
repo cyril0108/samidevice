@@ -10,10 +10,6 @@ Item {
     width: 960
     height: 540
 
-    //property alias setCommandButton: setCommandButton
-    //property alias deviceListView: deviceListView
-    //property alias commandListView: commandListView
-    //property alias commandTextField: commandTextField
     property Item listHeaderItem: null
     Item {
         id: listHeaderComponent
@@ -237,11 +233,39 @@ Item {
         id: setCommandButton
         anchors.top: deviceListView.bottom
         anchors.bottomMargin: 30
-        anchors.left: setCommandButton.right
+        anchors.left: commandTextField.right
         width: 139
         height: 20
         text: qsTr("SendCommandToDevice")
         onClicked: sendCommandToDevice()
         visible: commandListView.count > 0
+    }
+
+    Rectangle {
+        id: queryView
+        anchors.top: deviceListView.bottom
+        anchors.bottomMargin: 30
+        anchors.left: setCommandButton.right
+        anchors.leftMargin: 100
+        property variant myData: model
+        width: 200
+        height: 200
+        Text {
+            id: queryViewText
+            text: ""
+            anchors.verticalCenter: parent.verticalCenter
+        }
+    }
+
+    function updateTextField(kText)
+    {
+        console.log( "updateTextField" )
+        queryViewText.text = "";
+        queryViewText.text = kText;
+    }
+
+    Connections {
+        target: ServerAppEventSender
+        onCommandReturned: updateTextField(kText);
     }
 }

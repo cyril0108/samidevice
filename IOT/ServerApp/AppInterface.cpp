@@ -5,6 +5,7 @@
 #include "AppInterface.h"
 #include "DeviceHandle.h"
 #include "DevicesInfoList.h"
+#include "EventSender.h"
 
 #include "serverapp.h"
 #include "ServerCore/servercore.h"
@@ -26,7 +27,8 @@ void SafeDelete(T*& pPointer) { delete pPointer; pPointer = nullptr; }
 CAppInterface::CAppInterface( QObject* pParent )
 : QObject( pParent )
 , m_pEngine( nullptr )
-{    
+, m_pSender(nullptr)
+{
 }
 
 CAppInterface::~CAppInterface()
@@ -37,6 +39,8 @@ CAppInterface::~CAppInterface()
 bool CAppInterface::Initialize(QQmlEngine* pEngine)
 {
     m_pEngine = pEngine;
+    m_pSender = new EventSender(this);
+    if (!m_pSender){ return false; }
     m_DevicesInfoListModel = new DevicesInfoList( this );
     if (!m_DevicesInfoListModel){ return false; }
     m_DeviceCmdListModel = new DeviceCmdList(m_DevicesInfoListModel);
@@ -87,6 +91,8 @@ bool CAppInterface::Initialize(QQmlEngine* pEngine)
     m_pEngine->rootContext()->setContextProperty(QStringLiteral("DevicesInfoList"), m_DevicesInfoListModel);
     m_pEngine->rootContext()->setContextProperty(QStringLiteral("DeviceCmdList"), m_DeviceCmdListModel);
     m_pEngine->rootContext()->setContextProperty(QStringLiteral("ServerApp"), m_pServerApp);
+    m_pEngine->rootContext()->setContextProperty(QStringLiteral("ServerAppEventSender"), m_pSender);
+
     CreateServerApp();
 
     //qmlRegisterType< DeviceHandle >("com.azul.iot", 1, 0, "DeviceHandle");
@@ -122,11 +128,18 @@ void CAppInterface::CreateServerApp()
             m_DeviceCmdListModel->addDevice(*kDevicesIfo);
         }
     });
-    
-    /*
-    QObject::connect(ServerCore::GetInstance(), &ServerCore::commandReturned, [=]
+
+    QObject::connect(ServerCore::GetInstance(), &ServerCore::commandReturned, [=](QString uid, QVariantMap retMap)
     {
+        QString kText(uid + " returns:\n");
+        for (QString key : retMap.keys())
+        {
+            kText+= key + ": " + retMap[key].toString()+"\n";
+        }
+
+        Q_EMIT m_pSender->commandReturned(kText);
     });
+    /*
     QObject::connect(ServerCore::GetInstance(), &ServerCore::dataWrittenToDevice, [=]
     {
     });

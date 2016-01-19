@@ -8,6 +8,7 @@ class CQmlServerApp;
 class DeviceHandle;
 class DevicesInfoList;
 class DeviceCmdList;
+class EventSender;
 
 class CAppInterface : public QObject
 {
@@ -26,4 +27,5 @@ private:
     DeviceHandle*    m_kDevicesIfo;
     DevicesInfoList* m_DevicesInfoListModel;
     DeviceCmdList*   m_DeviceCmdListModel;
+    EventSender*    m_pSender;
 };

@@ -92,6 +92,15 @@
     <ClCompile Include="DeviceHandle.cpp">
       <Filter>Data</Filter>
     </ClCompile>
+    <ClCompile Include="EventSender.cpp">
+      <Filter>Data</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_EventSender.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_EventSender.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="serverapp.h">
@@ -118,11 +127,16 @@
     <CustomBuild Include="main.qml">
       <Filter>Form Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="ServerAppForm.ui.qml">
-      <Filter>Form Files</Filter>
-    </CustomBuild>
     <CustomBuild Include="GeneratedFiles\ui_serverapp.h">
       <Filter>Generated Files</Filter>
     </CustomBuild>
+    <CustomBuild Include="EventSender.h">
+      <Filter>Data</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ServerAppForm.qml">
+      <Filter>Form Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
