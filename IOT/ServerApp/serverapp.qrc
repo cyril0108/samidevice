@@ -1,6 +1,6 @@
 <RCC>
     <qresource prefix="ServerApp">
         <file>main.qml</file>
-        <file>ServerAppForm.ui.qml</file>
+        <file>ServerAppForm.qml</file>
     </qresource>
 </RCC>
