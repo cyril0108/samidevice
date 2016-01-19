@@ -2,6 +2,7 @@ import QtQuick 2.5
 import QtQuick.Controls 1.4
 import QtQuick.Layouts 1.2
 
+
 //import com.azul.iot 1.0
 Item {
     id: serverAppForm
@@ -168,11 +169,14 @@ Item {
             radius: 5
             opacity: 0.2
             focus: true
+            width: parent.width
         }
     }
 
     ListView {
         id: commandListView
+        anchors.top: parent.top
+        anchors.topMargin: 50
         anchors.left: deviceListView.right
         width: parent.width / 2
         height: parent.height / 2
@@ -211,25 +215,14 @@ Item {
             radius: 5
             opacity: 0.2
             focus: true
+            width: parent.width
         }
-    }
-
-    Button {
-        id: setCommandButton
-        anchors.top: deviceListView.bottom
-        anchors.bottomMargin: 30
-        width: 139
-        height: 20
-        text: qsTr("SendCommandToDevice")
-        onClicked: sendCommandToDevice()
-        visible: commandListView.count > 0
     }
 
     TextField {
         id: commandTextField
         anchors.top: deviceListView.bottom
         anchors.bottomMargin: 30
-        anchors.right: setCommandButton.left
         width: 154
         height: 20
         placeholderText: qsTr("Input Digits")
@@ -240,5 +233,15 @@ Item {
         }
         visible: commandListView.count > 0
     }
-
+    Button {
+        id: setCommandButton
+        anchors.top: deviceListView.bottom
+        anchors.bottomMargin: 30
+        anchors.left: setCommandButton.right
+        width: 139
+        height: 20
+        text: qsTr("SendCommandToDevice")
+        onClicked: sendCommandToDevice()
+        visible: commandListView.count > 0
+    }
 }
