@@ -7,6 +7,7 @@
 
 class ServerBroadCast;
 class DeviceManager;
+class DeviceInfo;
 class QTcpSocket;
 class QTcpServer;
 
@@ -27,6 +28,7 @@ public:
 	void startServer();
 	void stopServer();
 
+    DeviceInfo queryDeviceInfo(QString deviceUID);
 	void queryDeviceDisplayInfo(QString deviceUID);
 	void sendCommandToDevice(QString deviceUID, QVariantMap paramMap);
 

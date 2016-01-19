@@ -178,6 +178,11 @@ QTcpSocket* ServerCore::createSocket(QString deviceUID)
 	return socket;
 }
 
+DeviceInfo ServerCore::queryDeviceInfo(QString deviceUID)
+{
+    return DeviceManagerModule()->GetDeviceInfo( deviceUID);
+}
+
 void ServerCore::queryDeviceDisplayInfo(QString deviceUID)
 {
 	QTcpSocket *socket = createSocket(deviceUID);

@@ -33,6 +33,12 @@
       <Extensions>cpp;moc</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
+    <Filter Include="Interface File">
+      <UniqueIdentifier>{c2e5215b-b705-4e74-91a7-98af5dd68a0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Data">
+      <UniqueIdentifier>{3935e891-023b-4680-80e9-f91409aca6f2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -50,6 +56,42 @@
     <ClCompile Include="GeneratedFiles\qrc_serverapp.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="AppInterface.cpp">
+      <Filter>Interface File</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_AppInterface.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_AppInterface.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_DevicesInfoList.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_DevicesInfoList.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="DevicesInfoList.cpp">
+      <Filter>Data</Filter>
+    </ClCompile>
+    <ClCompile Include="QmlServerApp.cpp">
+      <Filter>Interface File</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_QmlServerApp.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_QmlServerApp.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_DeviceHandle.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_DeviceHandle.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="DeviceHandle.cpp">
+      <Filter>Data</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="serverapp.h">
@@ -61,10 +103,30 @@
     <CustomBuild Include="serverapp.qrc">
       <Filter>Resource Files</Filter>
     </CustomBuild>
+    <CustomBuild Include="AppInterface.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="DevicesInfoList.h">
+      <Filter>Data</Filter>
+    </CustomBuild>
+    <CustomBuild Include="QmlServerApp.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="DeviceHandle.h">
+      <Filter>Data</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_serverapp.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="main.qml">
+      <Filter>Form Files</Filter>
+    </None>
+    <None Include="ServerAppForm.ui.qml">
+      <Filter>Form Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

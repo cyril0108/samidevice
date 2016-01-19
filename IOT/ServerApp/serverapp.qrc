@@ -1,4 +1,6 @@
 <RCC>
     <qresource prefix="ServerApp">
+        <file>main.qml</file>
+        <file>ServerAppForm.ui.qml</file>
     </qresource>
 </RCC>
