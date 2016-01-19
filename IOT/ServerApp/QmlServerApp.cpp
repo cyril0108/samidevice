@@ -31,18 +31,18 @@ void CQmlServerApp::displayInfoRecieved(QString uid, QVariantMap retMap)
     ServerCore::GetInstance()->displayInfoRecieved(uid, retMap);
 }
 
-void CQmlServerApp::queryDeviceInfo(QString deviceUID, QString& iP, QString& Name)
+void CQmlServerApp::queryDeviceInfo(QString deviceUID, QString& ip, QString& name)
 {
     DeviceInfo kInfo = ServerCore::GetInstance()->queryDeviceInfo(deviceUID);
-    iP = kInfo.getIP();
-    Name = kInfo.getName();
+    ip = kInfo.getIP();
+    name = kInfo.getName();
 }
 
 bool CQmlServerApp::sendCommandToDevice(const QString& deviceUID, const QString& cmdKey, const QString& value)
 {
     QVariantMap paramMap;
-    paramMap.insert("command", cmdKey);
-    paramMap.insert("param", value);
+    paramMap.insert(JSON_KEY_COMMAND, cmdKey);
+    paramMap.insert(JSON_KEY_PARAM, value);
     ServerCore::GetInstance()->sendCommandToDevice(deviceUID, paramMap);
     return true;
 }

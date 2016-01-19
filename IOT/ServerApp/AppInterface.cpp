@@ -8,10 +8,7 @@
 
 #include "serverapp.h"
 #include "ServerCore/servercore.h"
-#include "ServerCore/ServerBroadCast.h"
-#include "ServerCore/ServerTCPCommand.h"
 #include "ServerCore/Constant.h"
-#include "ServerCore/DeviceManager.h"
 #include "ServerCore/DeviceInfo.h"
 #include "ServerCore/DeviceCommand.h"
 
@@ -125,32 +122,14 @@ void CAppInterface::CreateServerApp()
             m_DeviceCmdListModel->addDevice(*kDevicesIfo);
         }
     });
-
-
+    
+    /*
     QObject::connect(ServerCore::GetInstance(), &ServerCore::commandReturned, [=]
     {
-        printf("11111");
     });
     QObject::connect(ServerCore::GetInstance(), &ServerCore::dataWrittenToDevice, [=]
     {
-        printf("11111");
     });
-    //signals:
-    //void deviceAdded(QString uid);
-    //void displayInfoRecieved(QString uid, QVariantMap retMap);
-    //void commandReturned(QString uid, QVariantMap retMap);
-    //void dataWrittenToDevice(QString remoteIP, QString msg);
-
-    /*
-    QObject::connect(ui.LoginButton, &QPushButton::clicked, [=]
-    {
-        QVariantMap paramMap;
-        paramMap.insert("command", "adjustTemperature");
-        paramMap.insert("param", "35");
-        paramMap.insert("seq", 1234);
-        ServerCore::GetInstance()->sendCommandToDevice("az0000", paramMap);
-    });
-
     QObject::connect(ui.GetStatusButton, &QPushButton::clicked, [=]
     {
         QVariantMap paramMap;
@@ -166,7 +145,6 @@ void CAppInterface::CreateServerApp()
         {
             ui.plainTextEdit->appendPlainText(key + ": " + retMap[key].toString());
         }
-
     });
     */
     ServerCore::GetInstance()->startServer();
