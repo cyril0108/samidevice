@@ -7,7 +7,8 @@
 class SERVERCORE_EXPORT DeviceCommand
 {
 public:
-	DeviceCommand( QString commandName = "undef", QString commandDisplayName = "undefined command", PARAM_TYPE paramType = PARAM_TYPE::NONE, 
+    DeviceCommand();
+    DeviceCommand( QString commandName, QString commandDisplayName = "undefined command", PARAM_TYPE paramType = PARAM_TYPE::NONE,
 		QString paramMin = "", QString paramMax = "");
 	~DeviceCommand();
 

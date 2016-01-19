@@ -85,26 +85,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="servercore_global.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Constant.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="common.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DeviceCommand.h">
-      <Filter>data</Filter>
-    </ClInclude>
-    <ClInclude Include="DeviceInfo.h">
-      <Filter>data</Filter>
-    </ClInclude>
-    <ClInclude Include="JsonGenerator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
     <CustomBuild Include="ServerBroadCast.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
@@ -119,6 +99,24 @@
     </CustomBuild>
     <CustomBuild Include="DeviceManager.h">
       <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="common.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Constant.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="JsonGenerator.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="servercore_global.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="DeviceCommand.h">
+      <Filter>data</Filter>
+    </CustomBuild>
+    <CustomBuild Include="DeviceInfo.h">
+      <Filter>data</Filter>
     </CustomBuild>
   </ItemGroup>
 </Project>

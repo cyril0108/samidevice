@@ -21,7 +21,7 @@
 #include <assert.h>
 
 #define CORE_MAX 1
-#define TEST_CODE
+//#define TEST_CODE
 
 template< typename T > inline
 void SafeDelete(T*& pPointer) { delete pPointer; pPointer = nullptr; }
@@ -107,19 +107,19 @@ void CAppInterface::CreateServerApp()
         if (m_DevicesInfoListModel->isExist(uid))
         {
             DeviceHandle* kDevicesIfo = new DeviceHandle;
-            DeviceInfo* kInfo = &ServerCore::GetInstance()->queryDeviceInfo(uid);
+            DeviceInfo kInfo = ServerCore::GetInstance()->queryDeviceInfo(uid);
             kDevicesIfo->setUID(uid);
-            kDevicesIfo->setIP(kInfo->getIP());
-            kDevicesIfo->setName(kInfo->getName());
-            kDevicesIfo->setCmdKeys(kInfo->getSupportCommands());
+            kDevicesIfo->setIP(kInfo.getIP());
+            kDevicesIfo->setName(kInfo.getName());
+            kDevicesIfo->setCmdKeys(kInfo.getSupportCommands());
 
             QList<QString> kDisplayName;
             for (auto i : kDevicesIfo->getCmdKeys())
             {
-                DeviceCommand kCmd = kInfo->getDeviceCommandDetail(i);
+                DeviceCommand kCmd = kInfo.getDeviceCommandDetail(i);
                 kDisplayName.append(kCmd.getCommandDisplayName());
             }
-            kDevicesIfo->setCmdDisplayName(kInfo->getSupportCommands());
+            kDevicesIfo->setCmdDisplayName(kInfo.getSupportCommands());
 
             m_DevicesInfoListModel->addDevice(*kDevicesIfo);
             m_DeviceCmdListModel->addDevice(*kDevicesIfo);

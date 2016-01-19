@@ -1,5 +1,10 @@
 #include "DeviceCommand.h"
 
+DeviceCommand::DeviceCommand() : commandName("undef"), commandDisplayName("undefined command")
+  , paramType(PARAM_TYPE::NONE), paramMin(""), paramMax("")
+{
+
+}
 
 DeviceCommand::DeviceCommand(QString commandName, QString commandDisplayName, PARAM_TYPE paramType,
 	QString paramMin, QString paramMax) : commandName(commandName), commandDisplayName(commandDisplayName)

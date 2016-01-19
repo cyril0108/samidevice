@@ -115,18 +115,14 @@
     <CustomBuild Include="DeviceHandle.h">
       <Filter>Data</Filter>
     </CustomBuild>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="GeneratedFiles\ui_serverapp.h">
+    <CustomBuild Include="main.qml">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ServerAppForm.ui.qml">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="GeneratedFiles\ui_serverapp.h">
       <Filter>Generated Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="main.qml">
-      <Filter>Form Files</Filter>
-    </None>
-    <None Include="ServerAppForm.ui.qml">
-      <Filter>Form Files</Filter>
-    </None>
+    </CustomBuild>
   </ItemGroup>
 </Project>
