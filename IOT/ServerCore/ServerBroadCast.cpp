@@ -59,7 +59,7 @@ ServerBroadCast::ServerBroadCast()
 		//QByteArray byteData = "{\"CID\":\"001ZPYZTAW9RTB9A\",\"IOTID\":\"00TKUHRPEBC2WUY0\",\"TYPEID\":\"TF-L14DG-WI\",\"UID\":\"MT768124E7022630\"}";
 		qDebug() << byteData;
 		BroadCastOnce(&byteData);
-		BroadCastTest(&byteData);
+		//BroadCastTest(&byteData);
 	});
 }
 
@@ -82,9 +82,9 @@ void ServerBroadCast::BroadCastOnce(QByteArray *packet)
 		{
 			if ((addrs[j].ip().protocol() == QAbstractSocket::IPv4Protocol) && (addrs[j].broadcast().toString() != ""))
 			{
-				qDebug() << addrs[j].ip() << " " << packet << " " << addrs[j].broadcast().toString();
+				//qDebug() << addrs[j].ip() << " " << packet << " " << addrs[j].broadcast().toString();
 				quint64 nn = broadCastSendSocket->writeDatagram(packet->data(), packet->size(), QHostAddress::Broadcast, PORT_SERVER_BROADCAST);
-				qDebug() << nn << " " << broadCastSendSocket->errorString() << " " << broadCastSendSocket->state();
+				//qDebug() << nn << " " << broadCastSendSocket->errorString() << " " << broadCastSendSocket->state();
 			}
 		}
 	}

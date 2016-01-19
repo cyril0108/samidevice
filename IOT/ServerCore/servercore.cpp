@@ -78,6 +78,15 @@ void ServerCore::connectSignals()
 
 void ServerCore::processNewDevice(QVariantMap& dataMap)
 {
+	bool isSelfBroadcast = dataMap.contains(JSON_KEY_COMMAND) && dataMap[JSON_KEY_COMMAND] == CMD_QUERY
+		&& (!dataMap.contains(JSON_KEY_UID) || !dataMap.contains(JSON_KEY_DISPLAYNAME)
+			|| !dataMap.contains(JSON_KEY_IP));
+
+	if (isSelfBroadcast)
+	{
+		return;
+	}
+
 	QString deviceUID = dataMap[JSON_KEY_UID].toString();
 	QString deviceName = dataMap[JSON_KEY_DISPLAYNAME].toString();
 	QString deviceIP = dataMap[JSON_KEY_IP].toString();
