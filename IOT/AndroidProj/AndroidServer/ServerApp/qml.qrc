@@ -1,3 +1,6 @@
 <RCC>
-    <qresource prefix="/"/>
+    <qresource prefix="/ServerApp">
+        <file alias="main.qml">../../../ServerApp/main.qml</file>
+        <file alias="ServerAppForm.ui.qml">../../../ServerApp/ServerAppForm.ui.qml</file>
+    </qresource>
 </RCC>
