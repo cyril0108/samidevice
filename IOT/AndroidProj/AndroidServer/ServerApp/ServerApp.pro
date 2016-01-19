@@ -10,7 +10,8 @@ SOURCES += \
     ../../../ServerApp/DevicesInfoList.cpp \
     ../../../ServerApp/main.cpp \
     ../../../ServerApp/QmlServerApp.cpp \
-    ../../../ServerApp/serverapp.cpp
+    ../../../ServerApp/serverapp.cpp \
+    ../../../ServerApp/EventSender.cpp
 
 RESOURCES += qml.qrc
 
@@ -25,7 +26,8 @@ HEADERS += \
     ../../../ServerApp/DeviceHandle.h \
     ../../../ServerApp/DevicesInfoList.h \
     ../../../ServerApp/QmlServerApp.h \
-    ../../../ServerApp/serverapp.h
+    ../../../ServerApp/serverapp.h \
+    ../../../ServerApp/EventSender.h
 
 DISTFILES += \
     ../../../ServerApp/main.qml \
