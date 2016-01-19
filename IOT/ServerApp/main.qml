@@ -7,8 +7,8 @@ ApplicationWindow {
     id: mainWindow
     objectName: "mainWindow"
     visible: true
-    width: 640
-    height: 500
+    width: 960
+    height: 540
     title: qsTr("Server App")
     property variant paramMap: []
     property var cmdMap
