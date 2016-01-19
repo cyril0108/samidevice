@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine* pQmlEngine = new QQmlApplicationEngine;
     m_pAppInterface = new CAppInterface;
     m_pAppInterface->Initialize(pQmlEngine);
-    pQmlEngine->load(QUrl(QStringLiteral("main.qml")));
+    pQmlEngine->load(QUrl("qrc:/ServerApp/main.qml"));
 #else
     QApplication app(argc, argv);
     ServerApp w;
