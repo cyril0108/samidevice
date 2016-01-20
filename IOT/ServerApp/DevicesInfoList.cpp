@@ -64,15 +64,7 @@ QVariant DevicesInfoList::headerData(int section, Qt::Orientation orientation, i
     else
         return QString("Row %1").arg(section);
 }
-/*
-Qt::ItemFlags DevicesInfoList::flags(const QModelIndex &index) const
-{
-    if (!index.isValid())
-        return Qt::ItemIsEnabled;
 
-    return QAbstractItemModel::flags(index) | Qt::ItemIsEditable;
-}
-*/
 bool DevicesInfoList::setData(const QModelIndex &index, const QVariant &value, int role)
 {
     if (index.isValid() && role == Qt::EditRole) {
@@ -117,6 +109,11 @@ bool DevicesInfoList::isExist(const QString& uid)
 {
     auto result = std::find_if(devicesList.begin(), devicesList.end(), UIDMatch(uid));
     return result == std::end(devicesList);
+}
+
+void DevicesInfoList::removeAllRows()
+{
+    removeRows(0, devicesList.size(), index(0, 0));
 }
 
 /*******************************************/
@@ -190,11 +187,23 @@ bool DeviceCmdList::setData(const QModelIndex &index, const QVariant &value, int
 
 bool DeviceCmdList::insertRows(int position, int rows, const QModelIndex &parent)
 {
-    return false;
+    beginInsertRows(QModelIndex(), position, position + rows - 1);
+
+    for (int row = 0; row < rows; ++row) {
+        //devicesList.insert(position, "");
+    }
+    endInsertRows();
+    return true;
 }
 
 bool DeviceCmdList::removeRows(int position, int rows, const QModelIndex &parent)
 {
+    beginRemoveRows(QModelIndex(), position, position + rows - 1);
+
+    for (int row = 0; row < rows; ++row) {
+        devicesList.removeAt(position);
+    }
+    endRemoveRows();
     return true;
 }
 
@@ -208,10 +217,13 @@ void DeviceCmdList::addDevice(const DeviceHandle& kDevice)
 void DeviceCmdList::updateDeviceIndex(int nIndex)
 {
     beginResetModel();
-    
     endResetModel();
     DeviceIndex = nIndex;
     emit dataChanged(index(devicesList.at(DeviceIndex).getCmdDisplayName().size()), index(devicesList.at(DeviceIndex).getCmdDisplayName().size()));
     emit layoutChanged();
+}
 
+void DeviceCmdList::removeAllRows()
+{
+    removeRows(0, devicesList.at(DeviceIndex).getCmdDisplayName().size(), index(0, 0));
 }

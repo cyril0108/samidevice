@@ -16,6 +16,7 @@ public:
 
     // 如果有新增修改signals的東西, 記得也要去修改Connect()及Disconnect()
 Q_SIGNALS:
+
     // editing signal
     void commandReturned(QString kText);
 };

@@ -77,7 +77,7 @@ Item {
         }
     }
     function sendCommandToDevice() {
-        if (deviceListView.currentIndex != -1 && commandTextField.text != "") {
+        if (deviceListView.currentIndex != -1) {
             console.log("sendCommandToDevice")
             console.log(deviceListView.currentIndex)
             console.log(commandTextField.text)
@@ -178,6 +178,7 @@ Item {
         height: parent.height / 2
         model: DeviceCmdList
         header: cmdListHeader
+        visible: deviceListView.currentIndex != -1
         delegate: Item {
             x: 5
             width: 293
@@ -227,7 +228,7 @@ Item {
         validator: RegExpValidator {
             regExp: /\d+/
         }
-        visible: commandListView.count > 0
+        visible: commandListView.count > 0 && commandListView.currentIndex != -1
     }
     Button {
         id: setCommandButton
@@ -238,7 +239,7 @@ Item {
         height: 20
         text: qsTr("SendCommandToDevice")
         onClicked: sendCommandToDevice()
-        visible: commandListView.count > 0
+        visible: commandListView.count > 0 && commandListView.currentIndex != -1
     }
 
     Rectangle {
@@ -255,6 +256,7 @@ Item {
             text: ""
             anchors.verticalCenter: parent.verticalCenter
         }
+        visible: commandListView.count > 0 && commandListView.currentIndex != -1
     }
 
     function updateTextField(kText)

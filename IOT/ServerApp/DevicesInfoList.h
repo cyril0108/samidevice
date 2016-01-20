@@ -21,7 +21,6 @@ public:
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
     QVariant data(const QModelIndex &index, int role) const;
     QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const;
-    //Qt::ItemFlags flags(const QModelIndex &index) const;
     QHash<int, QByteArray> roleNames() const;
 
     bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole);
@@ -29,6 +28,9 @@ public:
     bool removeRows(int position, int rows, const QModelIndex &index = QModelIndex());
     void addDevice(DeviceHandle& kDevice);
     bool isExist(const QString& uid);
+
+public Q_SLOTS:
+    void removeAllRows();
 
 protected:
     QList<DeviceHandle> devicesList;
@@ -48,15 +50,16 @@ public:
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
     QVariant data(const QModelIndex &index, int role) const;
     QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const;
-    //Qt::ItemFlags flags(const QModelIndex &index) const;
     QHash<int, QByteArray> roleNames() const;
 
     bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole);
     bool insertRows(int position, int rows, const QModelIndex &index = QModelIndex());
     bool removeRows(int position, int rows, const QModelIndex &index = QModelIndex());
     void addDevice(const DeviceHandle& kDevice);
+
 public Q_SLOTS:
     void updateDeviceIndex(int nIndex);
+    void removeAllRows();
 
 protected:
     int DeviceIndex = 0;
