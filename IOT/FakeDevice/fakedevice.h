@@ -2,6 +2,7 @@
 #define FAKEDEVICE_H
 
 #include <QMainWindow>
+#include <QVariantMap>
 #include "ui_fakedevice.h"
 
 class QUdpSocket;
@@ -22,7 +23,7 @@ private:
 	void ReadIncomeData();
 	void ReplyUDPServerInfo();
 	void processDeviceCommandSocket();
-	void sendCommandToServer(QString command);
+	void sendCommandToServer(QVariantMap cmdMap);
 
 private:
 	Ui::FakeDeviceClass ui;

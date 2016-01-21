@@ -37,6 +37,13 @@
         </widget>
        </item>
        <item>
+        <widget class="QPushButton" name="listCommandBtn">
+         <property name="text">
+          <string>List Commands</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QPushButton" name="sendCmdBtn">
          <property name="text">
           <string>Send Command</string>

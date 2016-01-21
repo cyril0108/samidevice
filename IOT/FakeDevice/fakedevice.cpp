@@ -46,12 +46,27 @@ FakeDevice::FakeDevice(QWidget *parent)
 
 	QObject::connect(ui.listDeviceBtn, &QPushButton::clicked, [=]
 	{
-		sendCommandToServer("listDevices");
+		QVariantMap cmdMap;
+		cmdMap.insert("command", "listDevices");
+		sendCommandToServer(cmdMap);
+	});
+
+	QObject::connect(ui.listCommandBtn, &QPushButton::clicked, [=]
+	{
+		QVariantMap cmdMap;
+		cmdMap.insert("command", "listCommands");
+		cmdMap.insert("uid", "arduinozero");
+		sendCommandToServer(cmdMap);
 	});
 
 	QObject::connect(ui.sendCmdBtn, &QPushButton::clicked, [=]
 	{
-		sendCommandToServer("sendCommandToDevice");
+		QVariantMap cmdMap;
+		cmdMap.insert("command", "sendCommandToDevice");
+		cmdMap.insert("uid", "arduinozero");
+		cmdMap.insert("deviceCmd", "adjustTemperature");
+		cmdMap.insert("param", "45");
+		sendCommandToServer(cmdMap);
 	});
 }
 
@@ -102,7 +117,7 @@ void FakeDevice::ReplyUDPServerInfo()
 			currentIP = address.toString();
 		}
 	}
-	currentIP = "192.168.1.59";
+	//currentIP = "192.168.1.59";
 	ui.plainTextEdit->appendPlainText("CurrentIP: " + currentIP);
 
 	if (currentIP.isEmpty())
@@ -111,8 +126,8 @@ void FakeDevice::ReplyUDPServerInfo()
 	}
 
 	QJsonObject jsonObj;
-	jsonObj.insert( "uid", "az0000");
-	jsonObj.insert("DisplayName", "aldnoah zero");
+	jsonObj.insert( "uid", "fakemonitor");
+	jsonObj.insert("DisplayName", "Monitor Device");
 	jsonObj.insert("ip", currentIP);
 	jsonObj.insert("type", "xxXxx");
 
@@ -155,7 +170,7 @@ void FakeDevice::processDeviceCommandSocket()
 		{
 			retJsonObj.insert("status", 200);
 			QJsonArray cmdArray;
-
+			/*
 			QJsonObject cmdObj1;
 			cmdObj1.insert("command", "adjustTemperature");
 			cmdObj1.insert("command_displayName", "Set Temperature");
@@ -170,7 +185,7 @@ void FakeDevice::processDeviceCommandSocket()
 
 			cmdArray.append(cmdObj1);
 			cmdArray.append(cmdObj2);
-
+			*/
 			retJsonObj.insert("SupportCmds", cmdArray);
 
 			connected = true;
@@ -179,21 +194,22 @@ void FakeDevice::processDeviceCommandSocket()
 		{
 			retJsonObj.insert("status", 200);
 			QJsonArray keyArray;
-			keyArray.append("Temperature");
-			keyArray.append("WindStrength");
-			keyArray.append("Humidity");
+			keyArray.append("Power");
+			//keyArray.append("WindStrength");
+			//keyArray.append("Humidity");
 
 			retJsonObj.insert("DisplayInfo", keyArray);
 
-			retJsonObj.insert("Temperature", QString::number(temperature));
-			retJsonObj.insert("WindStrength", "Medium");
-			retJsonObj.insert("Humidity", "60");
+			//retJsonObj.insert("Temperature", QString::number(temperature));
+			//retJsonObj.insert("WindStrength", "Medium");
+			//retJsonObj.insert("Humidity", "60");
+			retJsonObj.insert("Power", "On");
 		}
-		else if (command == "adjustTemperature")
+		/*else if (command == "adjustTemperature")
 		{
 			temperature = jsonObj["param"].toString().toInt();
 			retJsonObj.insert("status", 200);
-		}
+		}*/
 		else
 		{
 			ui.plainTextEdit->appendPlainText( command + " " + jsonObj["param"].toVariant().toString());
@@ -219,35 +235,40 @@ void FakeDevice::processDeviceCommandSocket()
 	});
 }
 
-void FakeDevice::sendCommandToServer(QString command)
+void FakeDevice::sendCommandToServer(QVariantMap cmdMap)
 {
 	QTcpSocket *socket = new QTcpSocket(this);
-	serverIP = "192.168.1.7";
-	socket->connectToHost(serverIP, 3479, QIODevice::ReadWrite);
+	//serverIP = "192.168.1.7";
+	
 
+	QString command = cmdMap["command"].toString();
 	QJsonObject jsonObj;
 
 	if (command == "listDevices")
 	{
 		jsonObj.insert("command", command);
 	}
+	else if (command == "listCommands")
+	{
+		QString deviceUID = cmdMap["uid"].toString();
+		jsonObj.insert("command", command);
+		jsonObj.insert("uid", deviceUID);
+	}
 	else if (command == "sendCommandToDevice")
 	{
+		QString deviceUID = cmdMap["uid"].toString();
+		QString deviceCmd = cmdMap["deviceCmd"].toString();
+		QString deviceParam = cmdMap["param"].toString();
 		jsonObj.insert("command", command);
-		jsonObj.insert("uid", "arduinozero");
-		jsonObj.insert("deviceCmd", "adjustTemperature");
-		jsonObj.insert("param", "45");
+		jsonObj.insert("uid", deviceUID);
+		jsonObj.insert("deviceCmd", deviceCmd);
+		jsonObj.insert("param", deviceParam);
 
 	}
 
 	QJsonDocument doc(jsonObj);
 
 	ui.plainTextEdit->appendPlainText("SendCmdToServer: " + doc.toJson());
-
-	socket->write(doc.toJson());
-	bool bSentCmd = socket->waitForBytesWritten();
-	QString result = (bSentCmd ? "true" : "false");
-	ui.plainTextEdit->appendPlainText("Cmd Sent: " + result);
 
 	QObject::connect(socket, &QTcpSocket::readyRead, [=]
 	{
@@ -270,4 +291,11 @@ void FakeDevice::sendCommandToServer(QString command)
 	{
 		socket->deleteLater();
 	});
+
+	socket->connectToHost(serverIP, 3479, QIODevice::ReadWrite);
+
+	socket->write(doc.toJson());
+	bool bSentCmd = socket->waitForBytesWritten();
+	QString result = (bSentCmd ? "true" : "false");
+	ui.plainTextEdit->appendPlainText("Cmd Sent: " + result);
 }
