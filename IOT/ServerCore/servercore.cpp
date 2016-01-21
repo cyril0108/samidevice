@@ -316,6 +316,36 @@ QVariantMap ServerCore::prepareDataForDevice(const QJsonObject& cmdObj)
 		retMap.insert(JSON_KEY_RETURN_TYPE, (int)TCP_REPLY_TYPE::QUERY_DEVICES);
 		retMap.insert(JSON_KEY_DEVICES, devArray);
 	}
+	else if (command == SERVER_CMD_LIST_COMMANDS)
+	{
+		QJsonArray devArray;
+
+		QString uid = cmdObj[JSON_KEY_UID].toString();
+
+		if (!DeviceManagerModule()->HasDevice(uid))
+		{
+			isFail = true;
+		}
+
+		for (QString devCommand : DeviceManagerModule()->GetDeviceInfo(uid).getSupportCommands())
+		{
+			QJsonObject devObj;
+			devObj.insert(JSON_KEY_DEVICECMD, devCommand);
+			QString dispName = DeviceManagerModule()->GetDeviceInfo(uid).getDeviceCommandDetail(devCommand).getCommandDisplayName();
+			int paramType = (int)DeviceManagerModule()->GetDeviceInfo(uid).getDeviceCommandDetail(devCommand).getParamType();
+			QString paramMin = DeviceManagerModule()->GetDeviceInfo(uid).getDeviceCommandDetail(devCommand).getParamMin();
+			QString paramMax = DeviceManagerModule()->GetDeviceInfo(uid).getDeviceCommandDetail(devCommand).getParamMax();
+			devObj.insert(JSON_KEY_CMD_DISPLAYNAME, dispName);
+			devObj.insert(JSON_KEY_PARAM_TYPE, paramType);
+			devObj.insert(JSON_KEY_PARAM_MIN, paramMin);
+			devObj.insert(JSON_KEY_PARAM_MAX, paramMax);
+
+			devArray.append(devObj);
+		}
+
+		retMap.insert(JSON_KEY_RETURN_TYPE, (int)TCP_REPLY_TYPE::QUERY_COMMANDS);
+		retMap.insert(JSON_KEY_SUPPORTCMDS, devArray);
+	}
 	else if (command == SERVER_CMD_SEND_CMD_TO_DEVICE)
 	{
 		QString uid = cmdObj[JSON_KEY_UID].toString();

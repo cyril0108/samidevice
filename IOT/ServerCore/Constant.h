@@ -23,6 +23,7 @@
 #define CMD_QUERY_DEVICE_DISPLAY_INFO QString( "queryDisplayInfo" )
 
 #define SERVER_CMD_LIST_DEVICES QString("listDevices")
+#define SERVER_CMD_LIST_COMMANDS QString("listCommands")
 #define SERVER_CMD_SEND_CMD_TO_DEVICE QString("sendCommandToDevice")
 
 const int PORT_SERVER_BROADCAST = 3479;

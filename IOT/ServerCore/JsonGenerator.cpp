@@ -51,6 +51,12 @@ QString JsonGenerator::GenerateJsonReply(TCP_REPLY_TYPE replyType, QVariantMap p
 		jsonObject.insert(JSON_KEY_STATUS, paramMap[JSON_KEY_STATUS].toInt());
 	}
 		break;
+	case TCP_REPLY_TYPE::QUERY_COMMANDS:
+	{
+		jsonObject.insert(JSON_KEY_SUPPORTCMDS, paramMap[JSON_KEY_SUPPORTCMDS].toJsonArray());
+		jsonObject.insert(JSON_KEY_STATUS, paramMap[JSON_KEY_STATUS].toInt());
+	}
+		break;
 	case TCP_REPLY_TYPE::FORWARD_COMMAND_TO_DEVICE:
 	{
 		jsonObject.insert(JSON_KEY_STATUS, paramMap[JSON_KEY_STATUS].toInt());
