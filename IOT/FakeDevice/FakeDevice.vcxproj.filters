@@ -86,6 +86,9 @@
     <ClCompile Include="GeneratedFiles\Release\moc_FakeDevicesInfoList.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\qrc_fakedevice.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="fakedevice.qrc">

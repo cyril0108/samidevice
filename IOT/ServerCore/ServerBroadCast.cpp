@@ -28,22 +28,12 @@ ServerBroadCast::ServerBroadCast()
 	broadCastRecieveSocket = new QUdpSocket(this);
 	broadCastRecieveSocket->open(QIODevice::ReadOnly);
 	//broadCastSendSocket->bind(QHostAddress::LocalHost, PORT_SERVER_BROADCAST, QUdpSocket::ShareAddress);
-	
-	testSocket = new QUdpSocket(this);
-	//testSocket->open(QIODevice::ReadWrite);
-	//testSocket->connectToHost("192.168.0.125", PORT_SERVER_BROADCAST);
 
 	broadCastRecieveSocket->bind(PORT_SERVER_BROADCAST, QUdpSocket::ShareAddress);
 	QObject::connect(broadCastRecieveSocket, &QUdpSocket::readyRead, [=]
 	{
 		ReadIncomeData();
 	});
-
-	QObject::connect(testSocket, &QUdpSocket::readyRead, [=]
-	{
-		ReadIncomeData();
-	});
-
 
 	broadCastTimer = new QTimer(this);
 	broadCastSeq = ServerUtil<qint32>::GenerateRandomNumber();
@@ -88,11 +78,6 @@ void ServerBroadCast::BroadCastOnce(QByteArray *packet)
 			}
 		}
 	}
-}
-
-void ServerBroadCast::BroadCastTest(QByteArray *packet)
-{
-	testSocket->write(*packet);
 }
 
 void ServerBroadCast::StartBroadCastingMessage()

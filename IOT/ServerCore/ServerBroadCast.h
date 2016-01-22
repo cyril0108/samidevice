@@ -26,13 +26,11 @@ signals:
 private:
 	ServerBroadCast();
 	void BroadCastOnce(QByteArray *packet);
-	void BroadCastTest(QByteArray *packet);
 	void ReadIncomeData();
 
 private:
 	QUdpSocket *broadCastSendSocket;
 	QUdpSocket *broadCastRecieveSocket;
-	QUdpSocket *testSocket;
 	QTimer* broadCastTimer;
 	qint32 broadCastSeq;
 };
