@@ -1,4 +1,6 @@
 <RCC>
     <qresource prefix="FakeDevice">
+		<file>main.qml</file>
+        <file>FakeDeviceForm.qml</file>
     </qresource>
 </RCC>

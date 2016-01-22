@@ -33,9 +33,15 @@
       <Extensions>cpp;moc</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
+    <Filter Include="Data">
+      <UniqueIdentifier>{7b3e07e6-a64f-4539-88ab-1d2fd74d63f7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ClientApp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="fakedevice.cpp">
@@ -47,20 +53,70 @@
     <ClCompile Include="GeneratedFiles\Release\moc_fakedevice.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\qrc_fakedevice.cpp">
-      <Filter>Generated Files</Filter>
+    <ClCompile Include="GeneratedFiles\Debug\moc_ClientApp.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_ClientApp.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="DeviceEventSender.cpp">
+      <Filter>Data</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_DeviceEventSender.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_DeviceEventSender.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="FakeDeviceHandle.cpp">
+      <Filter>Data</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_FakeDeviceHandle.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_FakeDeviceHandle.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="FakeDevicesInfoList.cpp">
+      <Filter>Data</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_FakeDevicesInfoList.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_FakeDevicesInfoList.cpp">
+      <Filter>Generated Files\Release</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <CustomBuild Include="fakedevice.qrc">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ClientApp.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
     <CustomBuild Include="fakedevice.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="fakedevice.ui">
       <Filter>Form Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="fakedevice.qrc">
-      <Filter>Resource Files</Filter>
+    <CustomBuild Include="DeviceEventSender.h">
+      <Filter>Data</Filter>
     </CustomBuild>
+    <CustomBuild Include="FakeDeviceHandle.h">
+      <Filter>Data</Filter>
+    </CustomBuild>
+    <CustomBuild Include="FakeDevicesInfoList.h">
+      <Filter>Data</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="main.qml">
+      <Filter>Form Files</Filter>
+    </None>
+    <None Include="FakeDeviceForm.qml">
+      <Filter>Form Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_fakedevice.h">
