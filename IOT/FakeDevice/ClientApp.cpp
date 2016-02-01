@@ -185,7 +185,7 @@ void CClientApp::ReplyUDPServerInfo()
             currentIP = address.toString();
         }
     }
-    currentIP = "192.168.1.7";
+    currentIP = "192.168.0.120";
 
     if (currentIP.isEmpty())
     {
@@ -309,7 +309,7 @@ void CClientApp::processDeviceCommandSocket()
 void CClientApp::sendCommandToServer(QVariantMap cmdMap)
 {
     QTcpSocket *socket = new QTcpSocket(this);
-    serverIP = "192.168.1.69";
+    //serverIP = "192.168.0.238";
 
     QString command = cmdMap["command"].toString();
     QJsonObject jsonObj;
